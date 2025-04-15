@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>👩‍⚕️ | Congrats, Mbawen!✨</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 60px 15px;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(#fff0f5, #f0f8ff), url('https://www.transparenttextures.com/patterns/45-degree-fabric-light.png');
+      overflow-x: hidden;
+    }
+
+    .card {
+      background: #ffffffcc;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      padding: 40px 20px 40px 20px;
+      text-align: center;
+      width: 100%;
+      max-width: 500px;
+      transition: transform 0.4s ease, min-height 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    h1 {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1.5em;
+      margin: 10px 0 20px;
+      color: #5A3E36;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      letter-spacing: 2px;
+    }
+
+    .btn {
+      background-color: #A9746E;
+      border: none;
+      color: white;
+      padding: 15px 25px;
+      font-size: 1em;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #8C5C50;
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+
+    .message {
+      display: none;
+      margin-top: 40px;
+      font-size: 1.05em;
+      color: #3e2c26;
+      background-color: #fdf7f1;
+      padding: 18px;
+      border-radius: 15px;
+      border: 1px solid #e2c4b5;
+      animation: fadeIn 1s forwards;
+      line-height: 1.8;
+      text-align: left;
+      box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h1 {
+      animation: fadeInTitle 1s ease-out;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 30px 15px;
+      }
+
+      .message {
+        font-size: 0.95em;
+        padding: 15px;
+      }
+
+      h1 {
+        font-family: 'Quicksand', sans-serif;
+        font-size: 2em;
+        color: #A9746E;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="confetti" class="confetti"></canvas>
+<audio id="bgMusic" src="music.mp3"></audio>
+
+<div class="card" id="greetingCard">
+  <h1>🎓 dr. Aulia Wening Rafiah 👩‍⚕️</h1>
+  <button class="btn" aria-label="Open your card message" onclick="revealMessage()">open your 💌</button>
+  <p class="message" id="message">
+    <!-- message content here -->
+    <strong>My dearest one and only dr. Iwen✨,</strong><br>
+<img src="photo.png" alt="A photo of us" style="max-width: 200px; display: block; margin: 15px auto 5px; background: transparent;" />
+  <small style="display: block; text-align: center; ">#SobatMantulBerbangga</small><br>
+    Congrats on becoming a doctor! 🩺<br>
+    You’ve poured your heart, soul, and every ounce of your energy into this journey—and today, <em>April 15th, 2025</em>, all of it has blossomed into something so beautiful🌻<br><br>
+    I still remember our high school days, talking about our dreams over snacks and silly laughs… and now, here you are—<em>Doctor You</em>. Saving lives, making a difference, and stepping into your calling with so much grace. <br><br>
+    I’m beyond proud of you. Truly. Watching you grow into this incredible version of yourself has been such an honor. Your strength, your heart, your dedication—it’s all so inspiring 💖<br><br>
+    This is just the beginning of your story. Here’s to a future filled with healing hands, kind hearts, and everything you’ve ever dreamed of. And always remember, no matter where life takes you, I’ll forever be your biggest cheerleader!🫶🏻📣💗<br><br><br>
+    With so much admiration and love,<br>
+    colpoh 🌷🫧
+  </p>
+</div>
+
+<script>
+  function revealMessage() {
+    const card = document.getElementById("greetingCard");
+    const messageElement = document.getElementById("message");
+    const button = document.querySelector(".btn");
+    const music = document.getElementById("bgMusic");
+
+    // Hide the button
+    button.style.display = "none";
+
+    // Show the message
+    messageElement.style.display = "block";
+    messageElement.style.marginTop = "40px";
+
+    // Increase card height if needed
+    card.style.minHeight = "600px";
+
+    // Play music
+    music.play();
+    // Start confetti
+    startConfetti();
+  }
+
+  // Confetti setup
+  const canvas = document.getElementById('confetti');
+  const ctx = canvas.getContext('2d');
+  let confetti = [];
+  const colors = ['#FFD1DC', '#B5EAD7', '#C7CEEA', '#FFF5BA', '#E0BBE4', '#FFDAC1'];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  function Confetto() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height - canvas.height;
+    this.radius = Math.random() * 6 + 4;
+    this.color = colors[Math.floor(Math.random() * colors.length)];
+    this.speed = Math.random() * 3 + 2;
+    this.tilt = Math.random() * 10 - 5;
+
+    this.draw = function () {
+      ctx.beginPath();
+      ctx.arc(this.x + this.tilt, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    };
+
+    this.update = function () {
+      this.y += this.speed;
+      if (this.y > canvas.height) {
+        this.y = -10;
+        this.x = Math.random() * canvas.width;
+      }
+    };
+  }
+
+  function startConfetti() {
+    const numConfetti = window.innerWidth < 600 ? 50 : 100; // Reduce confetti on small screens
+    for (let i = 0; i < numConfetti; i++) {
+      confetti.push(new Confetto());
+    }
+    animateConfetti();
+  }
+
+function animateConfetti() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let i = 0; i < confetti.length; i++) {
+    confetti[i].update();
+    confetti[i].draw();
+  }
+  requestAnimationFrame(animateConfetti);
+}
+
+</script>
+</body>
+</html>
